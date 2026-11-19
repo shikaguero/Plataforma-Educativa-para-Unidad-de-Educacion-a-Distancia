@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Necesidades - Unidad de Educación a Distancia | ITTLA</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Librería Chart.js para las gráficas de pastel y barras -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="inst-header">
+    <div class="container header-flex">
+      <div>
+        <span class="badge">Protocolo CI-02/2026 · TecNM / ITTLA</span>
+        <h1>Instrumento de Diagnóstico de Necesidades</h1>
+        <p class="subtitle">Unidad de Educación a Distancia · Plataforma Educativa en Línea</p>
+      </div>
+      <nav class="view-switcher">
+        <button id="btnViewForm" class="btn btn-tab" type="button">📝 Formulario</button>
+        <button id="btnViewStats" class="btn btn-tab active" type="button">
+          📊 Resultados y Gráficas (<span id="totalBadge">36</span>)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- AVISO DE FORMULARIO CERRADO -->
+    <div id="closedBanner" class="closed-banner">
+      <div>
+        <strong>🔒 Diagnóstico Cerrado — Cierre de recepción: 26 de septiembre</strong>
+        <p>El periodo de captura finalizó el 26 de septiembre. El formulario se muestra únicamente como referencia del instrumento aplicado; los datos y gráficas corresponden a las 36 respuestas recolectadas.</p>
+      </div>
+      <button id="btnJumpToResults" class="btn btn-secondary" type="button">Ver Gráficas y Tablas</button>
+    </div>
+
+    <!-- ==================== VISTA 1: FORMULARIO (SOLO LECTURA / CERRADO) ==================== -->
+    <section id="formSection" class="card hidden">
+      <div class="objective-box">
+        <strong>Objetivo:</strong> Identificar las necesidades de docentes y estudiantes respecto al uso de una plataforma educativa en línea para la Unidad de Educación a Distancia. <em>La información es confidencial y se usará únicamente con fines académicos.</em>
+      </div>
+
+      <form id="diagnosticForm" aria-disabled="true">
+        <fieldset disabled>
+          <!-- SECCIÓN A -->
+          <fieldset>
+            <legend>Sección A. Datos generales</legend>
+
+            <div class="form-group">
+              <label class="q-title">1. Perfil:</label>
+              <div class="options-row">
+                <label><input type="radio" name="p1" value="Docente" /> Docente</label>
+                <label><input type="radio" name="p1" value="Estudiante" /> Estudiante</label>
+                <label><input type="radio" name="p1" value="Administrativo" /> Administrativo</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title" for="p2">2. Área o carrera:</label>
+              <input type="text" id="p2" name="p2" placeholder="Ej. Ing. en TIC, Ciencias Básicas, Gestión Empresarial..." />
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">3. Edad:</label>
+              <div class="options-row">
+                <label><input type="radio" name="p3" value="18–25" /> 18–25</label>
+                <label><input type="radio" name="p3" value="26–35" /> 26–35</label>
+                <label><input type="radio" name="p3" value="36–45" /> 36–45</label>
+                <label><input type="radio" name="p3" value="46 o más" /> 46 o más</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECCIÓN B -->
+          <fieldset>
+            <legend>Sección B. Situación actual</legend>
+
+            <div class="form-group">
+              <label class="q-title">4. ¿Ha usado antes una plataforma educativa en línea (Moodle, Classroom, Teams, etc.)?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p4" value="Sí" /> Sí</label>
+                <label><input type="radio" name="p4" value="No" /> No</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">5. ¿Con qué frecuencia usa herramientas digitales para dar o tomar clase?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p5" value="Nunca" /> Nunca</label>
+                <label><input type="radio" name="p5" value="A veces" /> A veces</label>
+                <label><input type="radio" name="p5" value="Frecuentemente" /> Frecuentemente</label>
+                <label><input type="radio" name="p5" value="Siempre" /> Siempre</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">6. ¿Qué dispositivo usa principalmente?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p6" value="Computadora" /> Computadora</label>
+                <label><input type="radio" name="p6" value="Laptop" /> Laptop</label>
+                <label><input type="radio" name="p6" value="Tableta" /> Tableta</label>
+                <label><input type="radio" name="p6" value="Teléfono" /> Teléfono</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">7. ¿Cómo califica su nivel de manejo de herramientas digitales?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p7" value="Básico" /> Básico</label>
+                <label><input type="radio" name="p7" value="Intermedio" /> Intermedio</label>
+                <label><input type="radio" name="p7" value="Avanzado" /> Avanzado</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECCIÓN C -->
+          <fieldset>
+            <legend>Sección C. Problemas detectados (escala 1 = nada, 5 = mucho)</legend>
+
+            <div class="likert-item">
+              <span class="q-title">8. Los materiales de mis cursos están desorganizados o dispersos.</span>
+              <div class="likert-scale">
+                <span>Nada (1)</span>
+                <label><input type="radio" name="p8" value="1" /> 1</label>
+                <label><input type="radio" name="p8" value="2" /> 2</label>
+                <label><input type="radio" name="p8" value="3" /> 3</label>
+                <label><input type="radio" name="p8" value="4" /> 4</label>
+                <label><input type="radio" name="p8" value="5" /> 5</label>
+                <span>Mucho (5)</span>
+              </div>
+            </div>
+
+            <div class="likert-item">
+              <span class="q-title">9. Es difícil encontrar la información o los recursos cuando los necesito.</span>
+              <div class="likert-scale">
+                <span>Nada (1)</span>
+                <label><input type="radio" name="p9" value="1" /> 1</label>
+                <label><input type="radio" name="p9" value="2" /> 2</label>
+                <label><input type="radio" name="p9" value="3" /> 3</label>
+                <label><input type="radio" name="p9" value="4" /> 4</label>
+                <label><input type="radio" name="p9" value="5" /> 5</label>
+                <span>Mucho (5)</span>
+              </div>
+            </div>
+
+            <div class="likert-item">
+              <span class="q-title">10. La comunicación entre docentes y estudiantes fuera del aula es limitada.</span>
+              <div class="likert-scale">
+                <span>Nada (1)</span>
+                <label><input type="radio" name="p10" value="1" /> 1</label>
+                <label><input type="radio" name="p10" value="2" /> 2</label>
+                <label><input type="radio" name="p10" value="3" /> 3</label>
+                <label><input type="radio" name="p10" value="4" /> 4</label>
+                <label><input type="radio" name="p10" value="5" /> 5</label>
+                <span>Mucho (5)</span>
+              </div>
+            </div>
+
+            <div class="likert-item">
+              <span class="q-title">11. He tenido problemas de acceso desde el celular u otros dispositivos.</span>
+              <div class="likert-scale">
+                <span>Nada (1)</span>
+                <label><input type="radio" name="p11" value="1" /> 1</label>
+                <label><input type="radio" name="p11" value="2" /> 2</label>
+                <label><input type="radio" name="p11" value="3" /> 3</label>
+                <label><input type="radio" name="p11" value="4" /> 4</label>
+                <label><input type="radio" name="p11" value="5" /> 5</label>
+                <span>Mucho (5)</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECCIÓN D -->
+          <fieldset>
+            <legend>Sección D. Necesidades y prioridades</legend>
+
+            <div class="form-group">
+              <label class="q-title">12. ¿Qué funciones considera más importantes en una plataforma? <small>(marque hasta 3)</small></label>
+              <div class="options-grid" id="p12Group">
+                <label><input type="checkbox" name="p12" value="Gestión de cursos" /> Gestión de cursos</label>
+                <label><input type="checkbox" name="p12" value="Repositorio de materiales" /> Repositorio de materiales</label>
+                <label><input type="checkbox" name="p12" value="Entrega de tareas" /> Entrega de tareas</label>
+                <label><input type="checkbox" name="p12" value="Foros o mensajería" /> Foros o mensajería</label>
+                <label><input type="checkbox" name="p12" value="Calificaciones" /> Calificaciones</label>
+                <label><input type="checkbox" name="p12" value="Videoconferencia" /> Videoconferencia</label>
+                <label><input type="checkbox" name="p12" value="Notificaciones" /> Notificaciones</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">13. ¿Qué tan importante es que funcione bien desde el teléfono?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p13" value="Nada" /> Nada</label>
+                <label><input type="radio" name="p13" value="Poco" /> Poco</label>
+                <label><input type="radio" name="p13" value="Importante" /> Importante</label>
+                <label><input type="radio" name="p13" value="Muy importante" /> Muy importante</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title">14. ¿Qué tan importante es que sea accesible para personas con alguna discapacidad?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p14" value="Nada" /> Nada</label>
+                <label><input type="radio" name="p14" value="Poco" /> Poco</label>
+                <label><input type="radio" name="p14" value="Importante" /> Importante</label>
+                <label><input type="radio" name="p14" value="Muy importante" /> Muy importante</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECCIÓN E -->
+          <fieldset>
+            <legend>Sección E. Disposición</legend>
+
+            <div class="form-group">
+              <label class="q-title">15. ¿Estaría dispuesto o dispuesta a usar una nueva plataforma institucional?</label>
+              <div class="options-row">
+                <label><input type="radio" name="p15" value="Sí" /> Sí</label>
+                <label><input type="radio" name="p15" value="No" /> No</label>
+                <label><input type="radio" name="p15" value="Tal vez" /> Tal vez</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="q-title" for="p16">16. ¿Qué le preocupa más de cambiar de plataforma?</label>
+              <input type="text" id="p16" name="p16" placeholder="Campo bloqueado — recepción cerrada el 26 de septiembre" />
+            </div>
+
+            <div class="form-group">
+              <label class="q-title" for="p17">17. Comentarios o sugerencias:</label>
+              <textarea id="p17" name="p17" rows="3" placeholder="Campo bloqueado — recepción cerrada el 26 de septiembre"></textarea>
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <p class="closed-note">Recepción de respuestas cerrada desde el 26 de septiembre. Consulta los resultados en la pestaña <strong>Resultados y Gráficas</strong>.</p>
+      </form>
+    </section>
+
+    <!-- ==================== VISTA 2: DASHBOARD Y GRÁFICAS (ACTIVA POR DEFECTO) ==================== -->
+    <section id="statsSection">
+      <div class="card toolbar-card">
+        <div>
+          <h2>Resultados del Diagnóstico (<span id="countDisplay">36</span> encuestados)</h2>
+          <p class="muted">Muestra recolectada al cierre (26 de septiembre): 23 Docentes, 11 Estudiantes y 2 Administrativos.</p>
+        </div>
+        <div class="toolbar-buttons">
+          <button id="btnExportCSV" class="btn btn-secondary" type="button">📥 Descargar CSV</button>
+        </div>
+      </div>
+
+      <!-- Tarjetas KPI -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Total Muestra</span>
+          <strong class="kpi-value" id="kpiTotal">36</strong>
+          <small id="kpiBreakdown">23 Doc · 11 Est · 2 Adm</small>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Uso previo de LMS (P4)</span>
+          <strong class="kpi-value" id="kpiPrevUse">0%</strong>
+          <small>2 Adm respondieron "No"</small>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Disposición Positiva (P15)</span>
+          <strong class="kpi-value" id="kpiWilling">0%</strong>
+          <small>Respondieron "Sí" o "Tal vez"</small>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Severidad Problemas (P8–P11)</span>
+          <strong class="kpi-value" id="kpiProblemAvg">0.0 / 5</strong>
+          <small>Promedio escala Likert</small>
+        </div>
+      </div>
+
+      <!-- Gráficas de Pastel y Barras -->
+      <div class="charts-grid">
+        <div class="card chart-card">
+          <h3>1. Distribución por Perfil</h3>
+          <div class="canvas-wrapper"><canvas id="chartPerfil"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>3. Rango de Edad</h3>
+          <div class="canvas-wrapper"><canvas id="chartEdad"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>4. Uso previo de plataforma en línea</h3>
+          <div class="canvas-wrapper"><canvas id="chartUsoPrevio"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>6. Dispositivo principal de acceso</h3>
+          <div class="canvas-wrapper"><canvas id="chartDispositivo"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>13. Importancia de uso en teléfono móvil</h3>
+          <div class="canvas-wrapper"><canvas id="chartMovil"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3>15. Disposición a usar nueva plataforma</h3>
+          <div class="canvas-wrapper"><canvas id="chartDisposicion"></canvas></div>
+        </div>
+        <div class="card chart-card chart-wide">
+          <h3>12. Funciones más importantes solicitadas (Multiselección hasta 3)</h3>
+          <div class="canvas-wrapper-bar"><canvas id="chartFunciones"></canvas></div>
+        </div>
+        <div class="card chart-card chart-wide">
+          <h3>Sección C. Promedio de Problemas Detectados (1 = Nada, 5 = Mucho)</h3>
+          <div class="canvas-wrapper-bar"><canvas id="chartProblemas"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Tabla de Registros -->
+      <div class="card">
+        <h3>Base de Datos de Respuestas Individuales (36 Registros)</h3>
+        <div class="table-responsive">
+          <table id="responsesTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Perfil</th>
+                <th>Área / Carrera</th>
+                <th>Edad</th>
+                <th>P4 Uso Previo</th>
+                <th>P6 Dispositivo</th>
+                <th>P7 Nivel</th>
+                <th>Prom. Problemas (P8-P11)</th>
+                <th>P12 Prioridades</th>
+                <th>P15 Disposición</th>
+                <th>P16 Preocupación principal</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="inst-footer">
+    <p>Instituto Tecnológico de Tlalnepantla · Unidad de Educación a Distancia · Proyecto CI-02/2026</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
