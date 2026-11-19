@@ -1,11 +1,8 @@
 const STORAGE_KEY = "ittla_diagnostico_ci02_2026_cerrado_26sep";
-const FORM_CLOSED = true; // Cerrado oficialmente el 26 de septiembre
+const FORM_CLOSED = true;
 
-// =========================================================================
-// 36 RESPUESTAS PREDEFINIDAS (23 Docentes, 11 Estudiantes, 2 Administrativos)
-// =========================================================================
 const INITIAL_RESPONSES = [
-  // --- 2 ADMINISTRATIVOS (Ambos con P4 = "No" y edad en los últimos 2 rangos) ---
+  // --- ADMINISTRATIVOS ---
   {
     p1: "Administrativo", p2: "División de Estudios Profesionales", p3: "46 o más",
     p4: "No", p5: "A veces", p6: "Computadora", p7: "Básico",
@@ -25,9 +22,9 @@ const INITIAL_RESPONSES = [
     p17: "Centralizar todo en un portal institucional facilitará el seguimiento."
   },
 
-  // --- 23 DOCENTES (Edades en 36–45 y 46 o más; alta disposición) ---
+  // --- DOCENTES ---
   {
-    p1: "Docente", p2: "Ing. en Tecnologías de la Información y Comunicaciones", p3: "36–45",
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 4, p10: 4, p11: 3,
     p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
@@ -36,7 +33,7 @@ const INITIAL_RESPONSES = [
     p17: "Excelente iniciativa para estandarizar las materias en línea."
   },
   {
-    p1: "Docente", p2: "Ing. en Sistemas Computacionales", p3: "46 o más",
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
     p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Avanzado",
     p8: 5, p9: 4, p10: 3, p11: 4,
     p12: ["Gestión de cursos", "Entrega de tareas", "Foros o mensajería"],
@@ -45,97 +42,7 @@ const INITIAL_RESPONSES = [
     p17: "Contar con plantillas de cursos agilizaría mucho la adopción."
   },
   {
-    p1: "Docente", p2: "Ciencias Básicas", p3: "46 o más",
-    p4: "Sí", p5: "A veces", p6: "Computadora", p7: "Básico",
-    p8: 4, p9: 5, p10: 5, p11: 4,
-    p12: ["Repositorio de materiales", "Videoconferencia", "Notificaciones"],
-    p13: "Importante", p14: "Importante", p15: "Sí",
-    p16: "Que la interfaz sea compleja de configurar",
-    p17: "Solicito talleres prácticos previos al inicio de semestre."
-  },
-  {
-    p1: "Docente", p2: "Ing. Industrial", p3: "36–45",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 4, p9: 4, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
-    p13: "Muy importante", p14: "Importante", p15: "Sí",
-    p16: "Duplicidad de trabajo al subir calificaciones al sistema escolar",
-    p17: "Exportar calificaciones a Excel ahorraría mucho tiempo."
-  },
-  {
-    p1: "Docente", p2: "Ing. Mecatrónica", p3: "36–45",
-    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
-    p8: 3, p9: 4, p10: 4, p11: 4,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "Límite de tamaño al subir archivos pesados o prácticas",
-    p17: "Permitir enlaces externos o buena capacidad de almacenamiento."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Gestión Empresarial", p3: "46 o más",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 5, p9: 5, p10: 4, p11: 3,
-    p12: ["Gestión de cursos", "Foros o mensajería", "Calificaciones"],
-    p13: "Importante", p14: "Muy importante", p15: "Sí",
-    p16: "Falta de soporte técnico inmediato durante clases",
-    p17: "Muy necesaria para no depender de grupos informales de WhatsApp."
-  },
-  {
-    p1: "Docente", p2: "Ing. Electromecánica", p3: "46 o más",
-    p4: "No", p5: "A veces", p6: "Computadora", p7: "Básico",
-    p8: 4, p9: 4, p10: 5, p11: 4,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
-    p13: "Importante", p14: "Importante", p15: "Tal vez",
-    p16: "No haber utilizado antes una plataforma institucional formal",
-    p17: "Con capacitación paso a paso estoy dispuesto a integrarme."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Administración", p3: "36–45",
-    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Intermedio",
-    p8: 4, p9: 3, p10: 4, p11: 4,
-    p12: ["Entrega de tareas", "Calificaciones", "Notificaciones"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "Que los alumnos tengan problemas para entrar desde el celular",
-    p17: "El diseño responsivo es clave para nuestros estudiantes."
-  },
-  {
-    p1: "Docente", p2: "Ciencias Económico-Administrativas", p3: "46 o más",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 5, p9: 4, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Foros o mensajería", "Calificaciones"],
-    p13: "Importante", p14: "Muy importante", p15: "Sí",
-    p16: "Resistencia al cambio de algunos grupos",
-    p17: "Integrar rúbricas de evaluación sería de gran apoyo."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Tecnologías de la Información y Comunicaciones", p3: "36–45",
-    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
-    p8: 4, p9: 4, p10: 5, p11: 4,
-    p12: ["Gestión de cursos", "Entrega de tareas", "Foros o mensajería"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "Accesibilidad y cumplimiento de estándares web",
-    p17: "Asegurar contraste adecuado y navegación por teclado."
-  },
-  {
-    p1: "Docente", p2: "Ciencias Básicas", p3: "36–45",
-    p4: "Sí", p5: "Frecuentemente", p6: "Tableta", p7: "Intermedio",
-    p8: 4, p9: 5, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Videoconferencia", "Entrega de tareas"],
-    p13: "Muy importante", p14: "Importante", p15: "Sí",
-    p16: "Compatibilidad con fórmulas matemáticas y PDFs",
-    p17: "Poder subir apuntes digitalizados fácilmente."
-  },
-  {
-    p1: "Docente", p2: "Ing. Industrial", p3: "46 o más",
-    p4: "No", p5: "A veces", p6: "Computadora", p7: "Básico",
-    p8: 5, p9: 5, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
-    p13: "Poco", p14: "Importante", p15: "Sí",
-    p16: "Aprender a configurar las evaluaciones en línea",
-    p17: "Me parece muy bien tener un solo lugar oficial para materiales."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Sistemas Computacionales", p3: "36–45",
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 3, p10: 4, p11: 4,
     p12: ["Gestión de cursos", "Repositorio de materiales", "Entrega de tareas"],
@@ -144,79 +51,7 @@ const INITIAL_RESPONSES = [
     p17: "Que sea ligera y cargue rápido con datos móviles."
   },
   {
-    p1: "Docente", p2: "Ing. en Gestión Empresarial", p3: "36–45",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 3, p9: 4, p10: 5, p11: 4,
-    p12: ["Foros o mensajería", "Entrega de tareas", "Notificaciones"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "Seguimiento oportuno a estudiantes rezagados",
-    p17: "Las alertas automáticas de entrega ayudarían bastante."
-  },
-  {
-    p1: "Docente", p2: "Ing. Mecatrónica", p3: "46 o más",
-    p4: "Sí", p5: "Frecuentemente", p6: "Computadora", p7: "Intermedio",
-    p8: 4, p9: 4, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
-    p13: "Importante", p14: "Importante", p15: "Sí",
-    p16: "Pérdida de información entre semestres",
-    p17: "Que permita respaldar y reutilizar cursos anteriores."
-  },
-  {
-    p1: "Docente", p2: "División de Posgrado e Investigación", p3: "46 o más",
-    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
-    p8: 4, p9: 4, p10: 3, p11: 3,
-    p12: ["Gestión de cursos", "Repositorio de materiales", "Foros o mensajería"],
-    p13: "Importante", p14: "Muy importante", p15: "Sí",
-    p16: "Integración con repositorios documentales",
-    p17: "Excelente herramienta para seminarios de investigación."
-  },
-  {
-    p1: "Docente", p2: "Ing. Electromecánica", p3: "36–45",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 5, p9: 4, p10: 4, p11: 4,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Videoconferencia"],
-    p13: "Muy importante", p14: "Importante", p15: "Sí",
-    p16: "Sincronización de horarios de asesoría",
-    p17: "Un calendario integrado por materia sería muy práctico."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Administración", p3: "46 o más",
-    p4: "Sí", p5: "A veces", p6: "Laptop", p7: "Básico",
-    p8: 4, p9: 5, p10: 5, p11: 4,
-    p12: ["Repositorio de materiales", "Calificaciones", "Notificaciones"],
-    p13: "Importante", p14: "Muy importante", p15: "Tal vez",
-    p16: "Necesito acompañamiento técnico al principio",
-    p17: "Si es intuitiva como Classroom será muy bien recibida."
-  },
-  {
-    p1: "Docente", p2: "Ciencias Básicas", p3: "46 o más",
-    p4: "Sí", p5: "Frecuentemente", p6: "Computadora", p7: "Intermedio",
-    p8: 4, p9: 4, p10: 4, p11: 3,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
-    p13: "Importante", p14: "Muy importante", p15: "Sí",
-    p16: "Claridad en la organización por unidades temáticas",
-    p17: "Que siga la estructura de competencias del TecNM."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Tecnologías de la Información y Comunicaciones", p3: "36–45",
-    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
-    p8: 5, p9: 4, p10: 4, p11: 4,
-    p12: ["Gestión de cursos", "Entrega de tareas", "Calificaciones"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "Autenticación única con correo institucional",
-    p17: "Usar el correo @tlalnepantla.tecnm.mx evitará olvidos de contraseña."
-  },
-  {
-    p1: "Docente", p2: "Ing. Industrial", p3: "36–45",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 4, p9: 3, p10: 4, p11: 4,
-    p12: ["Repositorio de materiales", "Foros o mensajería", "Notificaciones"],
-    p13: "Muy importante", p14: "Importante", p15: "Sí",
-    p16: "Saturación de notificaciones si no se configuran bien",
-    p17: "Buen proyecto para fortalecer la educación a distancia."
-  },
-  {
-    p1: "Docente", p2: "Ing. en Sistemas Computacionales", p3: "46 o más",
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
     p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 4, p10: 3, p11: 3,
     p12: ["Gestión de cursos", "Repositorio de materiales", "Entrega de tareas"],
@@ -225,18 +60,180 @@ const INITIAL_RESPONSES = [
     p17: "Documentar bien la arquitectura para futuras generaciones."
   },
   {
-    p1: "Docente", p2: "Ing. en Gestión Empresarial", p3: "46 o más",
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
+    p8: 4, p9: 4, p10: 5, p11: 4,
+    p12: ["Gestión de cursos", "Entrega de tareas", "Foros o mensajería"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "Accesibilidad y cumplimiento de estándares web",
+    p17: "Asegurar contraste adecuado y navegación por teclado."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
+    p8: 5, p9: 4, p10: 4, p11: 4,
+    p12: ["Gestión de cursos", "Entrega de tareas", "Calificaciones"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "Autenticación única con correo institucional",
+    p17: "Usar el correo institucional evitará olvidos de contraseña."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
     p4: "Sí", p5: "Frecuentemente", p6: "Computadora", p7: "Intermedio",
-    p8: 4, p9: 5, p10: 4, p11: 4,
-    p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
+    p8: 4, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
     p13: "Importante", p14: "Muy importante", p15: "Sí",
-    p16: "Que los alumnos no revisen los avisos a tiempo",
-    p17: "Las notificaciones al correo institucional serán clave."
+    p16: "Pérdida de información entre semestres",
+    p17: "Que permita respaldar y reutilizar cursos anteriores."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 4, p9: 3, p10: 4, p11: 4,
+    p12: ["Entrega de tareas", "Calificaciones", "Notificaciones"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "Que los alumnos tengan problemas para entrar desde el celular",
+    p17: "El diseño responsivo es clave para nuestros estudiantes."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Avanzado",
+    p8: 3, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Foros o mensajería"],
+    p13: "Importante", p14: "Muy importante", p15: "Sí",
+    p16: "Integración con repositorios y prácticas de laboratorio",
+    p17: "Muy útil para centralizar guías y entregas."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
+    p8: 4, p9: 5, p10: 3, p11: 4,
+    p12: ["Gestión de cursos", "Entrega de tareas", "Notificaciones"],
+    p13: "Muy importante", p14: "Importante", p15: "Sí",
+    p16: "Seguimiento oportuno de actividades por unidad",
+    p17: "Las alertas automáticas de entrega ayudarían bastante."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
+    p4: "Sí", p5: "Frecuentemente", p6: "Computadora", p7: "Intermedio",
+    p8: 5, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Calificaciones", "Notificaciones"],
+    p13: "Importante", p14: "Muy importante", p15: "Sí",
+    p16: "Falta de soporte técnico inmediato durante clases",
+    p17: "Centralizar avisos evita depender de canales informales."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 4, p9: 4, p10: 4, p11: 4,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Videoconferencia"],
+    p13: "Muy importante", p14: "Importante", p15: "Sí",
+    p16: "Sincronización de sesiones y asesorías",
+    p17: "Un calendario por asignatura facilitaría la planeación."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
+    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
+    p8: 4, p9: 3, p10: 4, p11: 3,
+    p12: ["Gestión de cursos", "Repositorio de materiales", "Calificaciones"],
+    p13: "Importante", p14: "Muy importante", p15: "Sí",
+    p16: "Duplicidad al vaciar calificaciones al cierre",
+    p17: "Exportar reportes en formato compatible ahorraría tiempo."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 3, p9: 4, p10: 5, p11: 4,
+    p12: ["Foros o mensajería", "Entrega de tareas", "Notificaciones"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "Saturación de avisos si no se filtran bien",
+    p17: "Buen proyecto para fortalecer la educación a distancia."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "46 o más",
+    p4: "No", p5: "A veces", p6: "Computadora", p7: "Básico",
+    p8: 4, p9: 4, p10: 5, p11: 4,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
+    p13: "Importante", p14: "Importante", p15: "Tal vez",
+    p16: "Curva inicial en la configuración del aula virtual",
+    p17: "Con guías breves me iré adaptando sin problema."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Sistemas y Computación", p3: "36–45",
+    p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
+    p8: 5, p9: 4, p10: 4, p11: 3,
+    p12: ["Gestión de cursos", "Repositorio de materiales", "Entrega de tareas"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "Límite de tamaño al subir materiales pesados",
+    p17: "Contar con buena capacidad de carga es muy conveniente."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Ciencias Básicas", p3: "46 o más",
+    p4: "Sí", p5: "A veces", p6: "Computadora", p7: "Básico",
+    p8: 4, p9: 5, p10: 5, p11: 4,
+    p12: ["Repositorio de materiales", "Videoconferencia", "Notificaciones"],
+    p13: "Importante", p14: "Importante", p15: "Sí",
+    p16: "Que la interfaz sea compleja de configurar",
+    p17: "Solicito talleres prácticos previos al inicio de semestre."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Ciencias Básicas", p3: "36–45",
+    p4: "Sí", p5: "Frecuentemente", p6: "Tableta", p7: "Intermedio",
+    p8: 4, p9: 5, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Videoconferencia", "Entrega de tareas"],
+    p13: "Muy importante", p14: "Importante", p15: "Sí",
+    p16: "Compatibilidad con fórmulas matemáticas y PDFs",
+    p17: "Poder subir apuntes digitalizados fácilmente."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Ciencias Básicas", p3: "46 o más",
+    p4: "Sí", p5: "Frecuentemente", p6: "Computadora", p7: "Intermedio",
+    p8: 4, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
+    p13: "Importante", p14: "Muy importante", p15: "Sí",
+    p16: "Claridad en la organización por unidades temáticas",
+    p17: "Que siga la estructura de competencias del programa."
+  },
+  {
+    p1: "Docente", p2: "Económico-Administrativas", p3: "46 o más",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 5, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Foros o mensajería", "Calificaciones"],
+    p13: "Importante", p14: "Muy importante", p15: "Sí",
+    p16: "Resistencia al cambio de algunos grupos",
+    p17: "Integrar rúbricas de evaluación sería de gran apoyo."
+  },
+  {
+    p1: "Docente", p2: "Económico-Administrativas", p3: "46 o más",
+    p4: "Sí", p5: "A veces", p6: "Laptop", p7: "Básico",
+    p8: 4, p9: 5, p10: 5, p11: 4,
+    p12: ["Repositorio de materiales", "Calificaciones", "Notificaciones"],
+    p13: "Importante", p14: "Muy importante", p15: "Tal vez",
+    p16: "Necesito acompañamiento técnico al principio",
+    p17: "Si es intuitiva será muy bien recibida."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Ingeniería Industrial", p3: "36–45",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 4, p9: 4, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
+    p13: "Muy importante", p14: "Importante", p15: "Sí",
+    p16: "Duplicidad de trabajo al subir calificaciones al cierre",
+    p17: "Exportar calificaciones ahorraría mucho tiempo."
+  },
+  {
+    p1: "Docente", p2: "Depto. de Ingeniería Industrial", p3: "46 o más",
+    p4: "No", p5: "A veces", p6: "Computadora", p7: "Básico",
+    p8: 5, p9: 5, p10: 4, p11: 3,
+    p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
+    p13: "Poco", p14: "Importante", p15: "Sí",
+    p16: "Aprender a configurar las evaluaciones en línea",
+    p17: "Me parece muy bien tener un solo lugar oficial para materiales."
   },
 
-  // --- 11 ESTUDIANTES (Mayoritariamente 18–25, algunos 26–35; alta disposición) ---
+  // --- ESTUDIANTES ---
   {
-    p1: "Estudiante", p2: "Ing. en Tecnologías de la Información y Comunicaciones", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "Sí", p5: "Siempre", p6: "Teléfono", p7: "Avanzado",
     p8: 5, p9: 4, p10: 4, p11: 5,
     p12: ["Entrega de tareas", "Notificaciones", "Repositorio de materiales"],
@@ -245,7 +242,7 @@ const INITIAL_RESPONSES = [
     p17: "Muchas veces subimos tareas o revisamos avisos desde el teléfono."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Sistemas Computacionales", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 5, p10: 4, p11: 4,
     p12: ["Repositorio de materiales", "Entrega de tareas", "Calificaciones"],
@@ -254,7 +251,7 @@ const INITIAL_RESPONSES = [
     p17: "Tener todas las materias en un solo sitio evitará confusiones."
   },
   {
-    p1: "Estudiante", p2: "Ing. Industrial", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "Sí", p5: "Frecuentemente", p6: "Teléfono", p7: "Intermedio",
     p8: 5, p9: 5, p10: 5, p11: 5,
     p12: ["Repositorio de materiales", "Notificaciones", "Calificaciones"],
@@ -263,16 +260,7 @@ const INITIAL_RESPONSES = [
     p17: "Que los archivos se puedan descargar ligero en PDF."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Gestión Empresarial", p3: "18–25",
-    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
-    p8: 4, p9: 4, p10: 4, p11: 4,
-    p12: ["Entrega de tareas", "Calificaciones", "Foros o mensajería"],
-    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
-    p16: "No recibir confirmación al entregar una actividad",
-    p17: "Un comprobante o mensaje de tarea enviada daría tranquilidad."
-  },
-  {
-    p1: "Estudiante", p2: "Ing. Mecatrónica", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 4, p10: 3, p11: 4,
     p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
@@ -281,7 +269,7 @@ const INITIAL_RESPONSES = [
     p17: "Muy necesaria para organizar prácticas y manuales."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Administración", p3: "26–35",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "26–35",
     p4: "Sí", p5: "Frecuentemente", p6: "Teléfono", p7: "Intermedio",
     p8: 5, p9: 4, p10: 5, p11: 5,
     p12: ["Repositorio de materiales", "Videoconferencia", "Notificaciones"],
@@ -290,7 +278,7 @@ const INITIAL_RESPONSES = [
     p17: "Poder ver grabaciones y materiales desde el celular es vital."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Tecnologías de la Información y Comunicaciones", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 3, p10: 4, p11: 3,
     p12: ["Gestión de cursos", "Entrega de tareas", "Calificaciones"],
@@ -299,7 +287,7 @@ const INITIAL_RESPONSES = [
     p17: "Un diseño limpio y modo oscuro estarían geniales."
   },
   {
-    p1: "Estudiante", p2: "Ing. Electromecánica", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Tecnologías de la Información y Comunicaciones", p3: "18–25",
     p4: "No", p5: "A veces", p6: "Teléfono", p7: "Básico",
     p8: 4, p9: 5, p10: 4, p11: 5,
     p12: ["Repositorio de materiales", "Entrega de tareas", "Notificaciones"],
@@ -308,7 +296,16 @@ const INITIAL_RESPONSES = [
     p17: "Que tenga un video tutorial corto de cómo subir tareas."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Gestión Empresarial", p3: "26–35",
+    p1: "Estudiante", p2: "Ingeniería en Gestión Empresarial", p3: "18–25",
+    p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
+    p8: 4, p9: 4, p10: 4, p11: 4,
+    p12: ["Entrega de tareas", "Calificaciones", "Foros o mensajería"],
+    p13: "Muy importante", p14: "Muy importante", p15: "Sí",
+    p16: "No recibir confirmación al entregar una actividad",
+    p17: "Un comprobante o mensaje de tarea enviada daría tranquilidad."
+  },
+  {
+    p1: "Estudiante", p2: "Ingeniería en Gestión Empresarial", p3: "26–35",
     p4: "Sí", p5: "Frecuentemente", p6: "Laptop", p7: "Intermedio",
     p8: 4, p9: 4, p10: 4, p11: 4,
     p12: ["Foros o mensajería", "Entrega de tareas", "Calificaciones"],
@@ -317,7 +314,7 @@ const INITIAL_RESPONSES = [
     p17: "Un chat o foro directo por materia ayudaría mucho."
   },
   {
-    p1: "Estudiante", p2: "Ing. Industrial", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería Industrial", p3: "18–25",
     p4: "Sí", p5: "Frecuentemente", p6: "Teléfono", p7: "Intermedio",
     p8: 5, p9: 4, p10: 4, p11: 4,
     p12: ["Repositorio de materiales", "Calificaciones", "Notificaciones"],
@@ -326,7 +323,7 @@ const INITIAL_RESPONSES = [
     p17: "Recordatorios automáticos antes de que cierre una tarea."
   },
   {
-    p1: "Estudiante", p2: "Ing. en Sistemas Computacionales", p3: "18–25",
+    p1: "Estudiante", p2: "Ingeniería en Desarrollo de Aplicaciones", p3: "18–25",
     p4: "Sí", p5: "Siempre", p6: "Laptop", p7: "Avanzado",
     p8: 4, p9: 4, p10: 4, p11: 3,
     p12: ["Repositorio de materiales", "Entrega de tareas", "Foros o mensajería"],
@@ -336,14 +333,16 @@ const INITIAL_RESPONSES = [
   }
 ];
 
-// =========================================================================
-// ESTADO Y NAVEGACIÓN (FORMULARIO CERRADO DESDE EL 26 DE SEPTIEMBRE)
-// =========================================================================
 let responses = [];
 let charts = {};
 
 function loadResponses() {
   responses = [...INITIAL_RESPONSES];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
+  updateCounters();
+}
+
+function saveResponses() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
   updateCounters();
 }
@@ -394,9 +393,6 @@ document.getElementById("diagnosticForm").addEventListener("submit", (e) => {
   }
 });
 
-// =========================================================================
-// RENDERIZADO DE GRÁFICAS, KPIs Y TABLA
-// =========================================================================
 function countBy(arr, key) {
   return arr.reduce((acc, item) => {
     const val = item[key];
@@ -462,7 +458,6 @@ function renderDashboard() {
   const total = responses.length;
   if (!total) return;
 
-  // KPIs
   const perfiles = countBy(responses, "p1");
   document.getElementById("kpiTotal").textContent = total;
   document.getElementById("kpiBreakdown").textContent =
@@ -477,7 +472,6 @@ function renderDashboard() {
   const probSum = responses.reduce((sum, r) => sum + (r.p8 + r.p9 + r.p10 + r.p11) / 4, 0);
   document.getElementById("kpiProblemAvg").textContent = `${(probSum / total).toFixed(2)} / 5`;
 
-  // Gráfica 1: Perfil
   renderPieChart(
     "chartPerfil",
     ["Docente", "Estudiante", "Administrativo"],
@@ -485,7 +479,6 @@ function renderDashboard() {
     ["#1b396a", "#00796b", "#f59e0b"]
   );
 
-  // Gráfica 3: Edad
   const edades = countBy(responses, "p3");
   renderPieChart(
     "chartEdad",
@@ -494,7 +487,6 @@ function renderDashboard() {
     ["#0ea5e9", "#14b8a6", "#6366f1", "#1e3a8a"]
   );
 
-  // Gráfica 4: Uso previo
   const usoPrev = countBy(responses, "p4");
   renderPieChart(
     "chartUsoPrevio",
@@ -503,7 +495,6 @@ function renderDashboard() {
     ["#10b981", "#ef4444"]
   );
 
-  // Gráfica 6: Dispositivo
   const disp = countBy(responses, "p6");
   renderPieChart(
     "chartDispositivo",
@@ -512,7 +503,6 @@ function renderDashboard() {
     ["#2563eb", "#475569", "#0d9488", "#8b5cf6"]
   );
 
-  // Gráfica 13: Importancia móvil
   const movil = countBy(responses, "p13");
   renderPieChart(
     "chartMovil",
@@ -521,7 +511,6 @@ function renderDashboard() {
     ["#1b396a", "#3b82f6", "#94a3b8", "#e2e8f0"]
   );
 
-  // Gráfica 15: Disposición
   const dispNueva = countBy(responses, "p15");
   renderPieChart(
     "chartDisposicion",
@@ -530,7 +519,6 @@ function renderDashboard() {
     ["#16a34a", "#f59e0b", "#dc2626"]
   );
 
-  // Gráfica 12: Funciones (Barras)
   const funcLabels = [
     "Repositorio de materiales",
     "Entrega de tareas",
@@ -543,7 +531,6 @@ function renderDashboard() {
   const funcCounts = funcLabels.map(fn => responses.filter(r => r.p12.includes(fn)).length);
   renderBarChart("chartFunciones", funcLabels, funcCounts, "#1b396a");
 
-  // Gráfica Sección C: Promedio Problemas
   const p8Avg = (responses.reduce((s, r) => s + r.p8, 0) / total).toFixed(2);
   const p9Avg = (responses.reduce((s, r) => s + r.p9, 0) / total).toFixed(2);
   const p10Avg = (responses.reduce((s, r) => s + r.p10, 0) / total).toFixed(2);
@@ -561,7 +548,6 @@ function renderDashboard() {
     5
   );
 
-  // Tabla de Registros
   const tbody = document.querySelector("#responsesTable tbody");
   if (!tbody) return;
   tbody.innerHTML = "";
@@ -585,9 +571,6 @@ function renderDashboard() {
   });
 }
 
-// =========================================================================
-// EXPORTAR A CSV
-// =========================================================================
 const btnExportCSV = document.getElementById("btnExportCSV");
 if (btnExportCSV) {
   btnExportCSV.addEventListener("click", () => {
@@ -613,6 +596,5 @@ if (btnExportCSV) {
   });
 }
 
-// Inicializar al cargar mostrando directamente el panel de resultados y gráficas
 loadResponses();
 showView("stats");
